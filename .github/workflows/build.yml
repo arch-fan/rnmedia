@@ -13,9 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target:
-          - x86_64-unknown-linux-gnu
-          - aarch64-unknown-linux-gnu
+        target: [x86_64, aarch64]
 
     steps:
       - uses: actions/checkout@v4
@@ -29,14 +27,14 @@ jobs:
         run: rustup target add ${{ matrix.target }}
 
       - name: Build (Release)
-        run: cargo build --release --target ${{ matrix.target }}
+        run: cargo build --release --target ${{ matrix.target }}-unknown-linux-gnu
 
       - name: Package artifact
         run: |
-          cd target/${{ matrix.target }}/release
+          cd target/${{ matrix.target }}-unknown-linux-gnu/release
           zip rnmedia-${{ matrix.target }}.zip rnmedia
 
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: target/${{ matrix.target }}/release/rnmedia-${{ matrix.target }}.zip
+          files: target/${{ matrix.target }}-unknown-linux-gnu/release/rnmedia-${{ matrix.target }}.zip
