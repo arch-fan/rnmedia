@@ -36,3 +36,23 @@ If you want the files to be renamed, use the flag `--apply`:
 ```sh
 rnmedia --apply --media "The Office" --season 1 season_path/
 ```
+
+## Help command
+
+```sh
+$ rnmedia --help
+Usage: rnmedia [OPTIONS] --season <SEASON> --media <MEDIA> <PATH>
+
+Arguments:
+  <PATH>  Path to the directory containing media files
+
+Options:
+  -a, --apply            Actually apply the new filenames (if not provided, just prints preview)
+  -s, --season <SEASON>  Season number
+  -m, --media <MEDIA>    Media title
+  -o, --offset <OFFSET>  Episode offset [default: 0]
+  -h, --help             Print help
+  -V, --version          Print version
+```
+
+
