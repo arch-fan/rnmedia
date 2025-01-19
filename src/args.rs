@@ -1,7 +1,7 @@
 use clap::Parser;
 
 #[derive(Parser, Debug)]
-#[command(version, about, long_about = None)]
+#[command(version, about)]
 pub struct Args {
     /// Path to the directory containing media files
     pub path: String,
@@ -14,11 +14,11 @@ pub struct Args {
     #[arg(short, long)]
     pub season: i32,
 
-    /// Media name/title
-    #[arg(short = 'm', long = "media-name")]
-    pub media_name: String,
+    /// Media title
+    #[arg(short, long)]
+    pub media: String,
 
-    /// Episode offset (default 0)
+    /// Episode offset
     #[arg(short, long, default_value_t = 0)]
     pub offset: i32,
 }
