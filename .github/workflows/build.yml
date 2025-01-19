@@ -24,7 +24,11 @@ jobs:
           toolchain: stable
 
       - name: Add target
-        run: rustup target add ${{ matrix.target }}
+        run: rustup target add ${{ matrix.target }}-unknown-linux-gnu
+
+      - name: Install GCC
+        if: ${{ matrix.target == 'aarch64' }}
+        run: sudo apt install gcc-multilib
 
       - name: Build (Release)
         run: cargo build --release --target ${{ matrix.target }}-unknown-linux-gnu
